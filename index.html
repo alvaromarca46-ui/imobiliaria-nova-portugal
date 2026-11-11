@@ -184,7 +184,7 @@ var P=[
  sp:[["Tipo","Apartamento"],["Quartos","2"],["Sala","Sim"],["Cozinha","Sim"],["Banheiro","1"],["Área de serviço","Sim"]]}];
 var S=["Compra e venda de imóveis","Aluguel de imóveis","Administração de aluguéis","Avaliação de imóveis"];
 function wa(m){return"https://wa.me/"+NUM+"?text="+encodeURIComponent(m)}
-function photos(p){return p.fotos&&p.fotos.length?p.fotos:(p.g||[]).map(function(i){return IMG[i]})}
+var NO_PHOTO="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";function photos(p){var list=p.fotos&&p.fotos.length?p.fotos:(p.g||[]).map(function(i){return IMG[i]});return list.length?list:[NO_PHOTO]}
 function ic(n){return'<svg class="i"><use href="#'+n+'"/></svg>'}
 function tg(p,s){return'<span class="tag'+(p.t==="venda"?" v":"")+(s?" s":"")+'">'+(p.t==="venda"?"Venda":"Aluguel")+" · "+p.kind+"</span>"}
 function card(p){var m="Olá, Joel! Tenho interesse no imóvel: "+p.title+" – "+p.addr+" ("+p.price+p.per+").";
@@ -232,10 +232,10 @@ loadPublicProperties();
 var cur=null,gi=0;
 function det(p){cur=p;gi=0;var m="Olá, Joel! Tenho interesse no imóvel: "+p.title+" – "+p.addr+" ("+p.price+p.per+").";
 $("#v-det .wrap").innerHTML='<a class="back" href="#imoveis">'+ic("ar")+'Todos os imóveis</a><div class="dt"><div><button class="gm" id="gm" aria-label="Ampliar foto"><img id="gi" alt=""><span id="gc"></span></button><div class="th" id="th"></div></div><div class="di">'+tg(p,1)+'<h1 style="margin-top:1rem">'+p.title+'</h1><p class="ad">'+p.addr+'</p><div class="price">'+p.price+'<small>'+p.per+'</small></div><span class="hl">Sobre o imóvel</span>'+p.desc.map(function(d){return"<p>"+d+"</p>"}).join("")+'<ul class="sp">'+p.sp.map(function(s){return"<li><span>"+s[0]+"</span><b>"+s[1]+"</b></li>"}).join("")+'</ul><div class="cta"><a class="btn" target="_blank" rel="noopener" href="'+wa(m)+'">'+ic("chat")+'Tenho interesse</a><a class="btn g" href="#imoveis">Ver outros imóveis</a></div></div></div>';
-$("#th").innerHTML=photos(p).map(function(url,n){return'<button data-n="'+n+'" aria-label="Foto '+(n+1)+': '+p.cap[n]+'"><img src="'+url+'" alt=""></button>'}).join("");
+$("#th").innerHTML=photos(p).map(function(url,n){return'<button data-n="'+n+'" aria-label="Foto '+(n+1)+': '+(p.cap&&p.cap[n]||("Foto "+(n+1)))+'"><img src="'+url+'" alt=""></button>'}).join("");
 $$("#th button").forEach(function(b){b.onclick=function(){show(+b.dataset.n)}});$("#gm").onclick=openLb;show(0)}
 function show(n){gi=n;var p=cur;$("#gi").src=photos(p)[n];$("#gi").alt=p.title+" – "+p.cap[n];$("#gc").textContent=(n+1)+" / "+photos(p).length;$$("#th button").forEach(function(b,i){b.setAttribute("aria-current",i===n)})}
-var lb=$("#lb");function lbs(){var p=cur;$("#li").src=photos(p)[gi];$("#li").alt=p.title+" – "+p.cap[gi];$("#lt").textContent=(gi+1)+" / "+photos(p).length;show(gi)}
+var lb=$("#lb");function lbs(){var p=cur;$("#li").src=photos(p)[gi];$("#li").alt=p.title+" – "+(p.cap&&p.cap[gi]||("Foto "+(gi+1)));$("#lt").textContent=(gi+1)+" / "+photos(p).length;show(gi)}
 function openLb(){lbs();lb.showModal()}function step(d){gi=(gi+d+photos(cur).length)%photos(cur).length;lbs()}
 $("#lp").onclick=function(){step(-1)};$("#ln").onclick=function(){step(1)};$("#lx").onclick=function(){lb.close()};
 lb.addEventListener("click",function(e){if(e.target===lb)lb.close()});
