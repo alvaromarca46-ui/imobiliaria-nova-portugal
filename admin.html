@@ -1,217 +1,115 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>Painel administrativo | Nova Portugal</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Painel · Imobiliária Nova Portugal</title>
 <style>
-:root{color-scheme:light;--green:#173f32;--green2:#245b47;--cream:#f6f5f0;--ink:#202820;--muted:#6d756e;--line:#e3e6df;--red:#a33b32}
-*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
-header{background:var(--green);color:white;padding:20px max(20px,calc((100vw - 1120px)/2));display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{font-family:Georgia,serif;font-size:22px;letter-spacing:.02em}.brand small{display:block;font:11px system-ui;letter-spacing:.16em;text-transform:uppercase;opacity:.8}
-main{max-width:1120px;margin:32px auto;padding:0 18px}.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 8px 28px #1b34200a;margin-bottom:20px}
-h1,h2{margin:0 0 8px;font-family:Georgia,serif;font-weight:500}h1{font-size:30px}h2{font-size:23px}.muted{color:var(--muted)}.hidden{display:none!important}
-label{display:block;font-size:13px;font-weight:650;margin:0 0 6px}input,select,textarea{width:100%;border:1px solid #d8ded7;border-radius:9px;padding:12px;font:inherit;background:white;color:var(--ink)}textarea{min-height:90px;resize:vertical}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{margin-top:14px}.full{grid-column:1/-1}
-button{border:0;border-radius:9px;padding:11px 16px;background:var(--green2);color:white;font:600 14px system-ui;cursor:pointer}button.secondary{background:#e9eee9;color:var(--green)}button.danger{background:#f8e9e7;color:var(--red)}button:disabled{opacity:.55;cursor:wait}
-.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.top-actions{display:flex;gap:10px;align-items:center}
-.notice{padding:12px 14px;border-radius:9px;margin:14px 0;background:#edf4ed;color:#244c36}.notice.error{background:#f9e9e7;color:#8f3028}
-.cards{display:grid;gap:12px;margin-top:18px}.item{border:1px solid var(--line);border-radius:12px;padding:15px;display:flex;align-items:center;gap:14px;justify-content:space-between}.item h3{margin:0 0 3px;font-size:16px}.item p{margin:0;color:var(--muted);font-size:13px}.item-actions{display:flex;gap:8px;flex-shrink:0}
-#login{max-width:440px;margin:8vh auto}.login-title{margin-bottom:20px}.photo-preview{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.photo-preview img{width:88px;height:70px;object-fit:cover;border-radius:7px;border:1px solid var(--line)}
-.status{font-size:13px;color:#e8f2e9}.empty{padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
-@media(max-width:650px){header{padding:16px 18px}main{margin:18px auto}.panel{padding:18px}.grid{grid-template-columns:1fr}.full{grid-column:auto}.item{align-items:flex-start;flex-direction:column}.item-actions{width:100%}.item-actions button{flex:1}h1{font-size:26px}}
+:root{--bg:#FAF8F3;--sf:#F1EEE5;--ink:#15171A;--mu:#575C63;--ln:#E2DED1;--ac:#1E4D3B;--on:#fff;--rd:#B3261E;--sans:system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0F1311;--sf:#171D1A;--ink:#F1EFE8;--mu:#A4AAA5;--ln:#27312C;--ac:#7CC3A0;--on:#0F1311;--rd:#F2A19B;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--sans)}
+[hidden]{display:none!important}.w{width:min(980px,100% - 2rem);margin:0 auto;padding:1.5rem 0 4rem}
+h1{font:600 1.5rem/1.2 Georgia,serif;margin:0}h2{font:600 1.15rem/1.3 var(--sans);margin:0 0 .8rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.bx{background:var(--sf);border:1px solid var(--ln);border-radius:18px;padding:1.2rem;margin-bottom:1rem}
+label{display:block;font-weight:600;font-size:.88rem;margin:.9rem 0 .3rem}
+input,select,textarea{width:100%;min-height:46px;border-radius:12px;border:1px solid var(--ln);background:var(--bg);color:var(--ink);padding:.6rem .9rem;font:inherit}textarea{min-height:110px;resize:vertical}
+input[type=checkbox]{width:22px;min-height:22px;accent-color:var(--ac)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}.ck{display:flex;align-items:center;gap:.6rem;margin:.9rem 0 0;font-weight:500}.ck label{margin:0;font-weight:500}
+button,.b{min-height:46px;padding:0 1.2rem;border-radius:999px;border:0;background:var(--ac);color:var(--on);font:600 .95rem var(--sans);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+button:active{transform:scale(.97)}button.s{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ln)}button.d{background:transparent;color:var(--rd);box-shadow:inset 0 0 0 1px var(--rd)}button.sm{min-height:38px;padding:0 .9rem;font-size:.85rem}
+button:disabled{opacity:.5;cursor:wait}:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.ro{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem}
+.it{display:grid;grid-template-columns:84px 1fr;gap:.9rem;align-items:center;padding:.9rem 0;border-top:1px solid var(--ln)}.it:first-of-type{border-top:0}
+.it img{width:84px;height:84px;border-radius:12px;object-fit:cover;background:var(--ln)}.it small{color:var(--mu);display:block}.it .ac{grid-column:1/-1;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.pill{font:600 .72rem var(--sans);padding:.2rem .6rem;border-radius:999px;background:var(--bg);border:1px solid var(--ln);margin-right:.3rem}
+.fo{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.7rem;margin-top:.7rem}.ft{background:var(--bg);border:1px solid var(--ln);border-radius:12px;overflow:hidden}.ft img{width:100%;aspect-ratio:1;object-fit:cover;display:block}.ft div{display:flex;gap:.25rem;padding:.35rem;flex-wrap:wrap}.ft b{font-size:.7rem;padding:.1rem .5rem;background:var(--ac);color:var(--on);border-radius:999px;margin:.35rem 0 0 .35rem;display:inline-block}
+#msg{position:sticky;top:.5rem;z-index:5;padding:.8rem 1rem;border-radius:12px;margin-bottom:1rem;font-weight:500}#msg.ok{background:var(--ac);color:var(--on)}#msg.er{background:var(--rd);color:var(--bg)}
+dialog{border:0;border-radius:20px;padding:1.2rem;width:min(560px,94vw);background:var(--bg);color:var(--ink)}dialog::backdrop{background:rgba(0,0,0,.6)}dialog img{width:100%;border-radius:12px}
+.lg{max-width:420px;margin:12vh auto 0}
+@media (max-width:600px){.g2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header><div class="brand">Nova Portugal<small>Imobiliária · Painel administrativo</small></div><div class="top-actions"><span id="user-label" class="status"></span><button id="logout" class="secondary hidden" type="button">Sair</button></div></header>
-<main>
-<section id="login" class="panel">
-<div class="login-title"><h1>Acesso administrativo</h1><p class="muted">Entre com a conta autorizada da Imobiliária Nova Portugal.</p></div>
-<form id="login-form">
-<div class="field"><label for="email">E-mail</label><input id="email" type="email" value="novaportugalimobiliaria@gmail.com" autocomplete="username" required></div>
-<div class="field"><label for="password">Senha</label><input id="password" type="password" autocomplete="current-password" required></div>
-<div class="actions"><button id="login-button" type="submit">Entrar no painel</button></div>
-</form><div id="login-message" aria-live="polite"></div>
-<p class="muted" style="font-size:12px;margin-top:18px">Se ainda não definiu uma senha, use “Esqueci minha senha” no fluxo de recuperação do Supabase ou configure uma senha para este usuário no painel do Supabase.</p>
-</section>
+<div class="w">
+<div id="msg" role="status" aria-live="polite" hidden></div>
 
-<section id="app" class="hidden">
-<div class="panel">
-<h1>Imóveis</h1><p class="muted">Cadastre, edite e remova os imóveis exibidos pela imobiliária.</p>
-<div id="message" aria-live="polite"></div>
-<div class="actions"><button id="new-property" type="button">+ Cadastrar imóvel</button><button id="refresh" class="secondary" type="button">Atualizar lista</button></div>
-<div id="property-list" class="cards"><div class="empty">Carregando imóveis…</div></div>
-</div>
-<section id="editor" class="panel hidden">
-<h2 id="editor-title">Novo imóvel</h2>
-<form id="property-form">
-<input id="property-id" type="hidden">
-<div class="grid">
-<div class="field full"><label for="title">Título</label><input id="title" maxlength="120" required placeholder="Ex.: Casa para alugar"></div>
-<div class="field"><label for="type">Finalidade</label><select id="type" required><option value="aluguel">Aluguel</option><option value="venda">Venda</option></select></div>
-<div class="field"><label for="price">Preço (R$)</label><input id="price" type="number" min="0" step="0.01" required></div>
-<div class="field full"><label for="address">Endereço</label><input id="address" maxlength="250" placeholder="Rua, número e bairro"></div>
-<div class="field"><label for="bedrooms">Quartos</label><input id="bedrooms" type="number" min="0" step="1" value="0"></div>
-<div class="field"><label for="bathrooms">Banheiros</label><input id="bathrooms" type="number" min="0" step="1" value="0"></div>
-<div class="field"><label for="parking">Vagas</label><input id="parking" type="number" min="0" step="1" value="0"></div>
-<div class="field full"><label for="description">Descrição</label><textarea id="description" placeholder="Descreva os detalhes confirmados do imóvel"></textarea></div>
-<div class="field full"><label for="photos">Adicionar fotos</label><input id="photos" type="file" accept="image/*" multiple><div class="muted" style="font-size:12px;margin-top:5px">As fotos serão enviadas ao bucket imoveis-fotos. Você pode selecionar várias imagens.</div><div id="photo-preview" class="photo-preview"></div></div>
-</div>
-<div class="actions"><button id="save-button" type="submit">Salvar imóvel</button><button id="cancel-edit" class="secondary" type="button">Cancelar</button></div>
+<section id="login" class="lg" hidden><h1>Painel · Nova Portugal</h1><p style="color:var(--mu)">Acesso exclusivo do responsável pela imobiliária.</p>
+<form id="fl" class="bx"><label for="le">E-mail</label><input id="le" type="email" value="novaportugalimobiliaria@gmail.com" autocomplete="username" required><label for="lp">Senha</label><input id="lp" type="password" autocomplete="current-password" required>
+<div class="ro"><button type="submit">Entrar</button><button type="button" class="s" id="fg">Esqueci a senha</button></div></form></section>
+
+<section id="rec" class="lg" hidden><h1>Criar nova senha</h1><form id="fr" class="bx"><label for="np">Nova senha (mínimo 8 caracteres)</label><input id="np" type="password" minlength="8" autocomplete="new-password" required><div class="ro"><button type="submit">Salvar nova senha</button></div></form></section>
+
+<section id="app" hidden>
+<div class="top"><h1>Imóveis</h1><div class="ro" style="margin:0"><a class="b s" style="background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ln)" href="index.html" target="_blank" rel="noopener">Ver site</a><button class="s" id="out">Sair</button></div></div>
+<div id="lst" class="bx"></div><button id="nw">+ Novo imóvel</button>
+
+<form id="ed" class="bx" style="margin-top:1.2rem" hidden>
+<h2 id="et">Novo imóvel</h2>
+<div class="g2"><div><label for="fi">Venda ou aluguel</label><select id="fi"><option value="venda">Venda</option><option value="aluguel">Aluguel</option></select></div>
+<div><label for="tp">Tipo</label><select id="tp"><option>Casa</option><option>Apartamento</option><option>Terreno</option><option>Comercial</option></select></div></div>
+<label for="ti">Título</label><input id="ti" required maxlength="90">
+<div class="g2"><div><label for="en">Endereço</label><input id="en" required></div><div><label for="ba">Bairro (opcional)</label><input id="ba"></div></div>
+<div class="g2"><div><label for="pr">Preço em reais (só números)</label><input id="pr" type="number" min="0" step="1" inputmode="numeric" required></div><div><label for="qu">Quartos</label><input id="qu" type="number" min="0" step="1" inputmode="numeric"></div></div>
+<div class="g2"><div><label for="bn">Banheiros</label><input id="bn" type="number" min="0" step="1" inputmode="numeric"></div><div><label for="vg">Vagas de garagem</label><input id="vg" type="number" min="0" step="1" inputmode="numeric"></div></div>
+<label for="de">Descrição (separe parágrafos com uma linha em branco)</label><textarea id="de"></textarea>
+<label for="dt">Características (uma por linha)</label><textarea id="dt" placeholder="Cozinha&#10;Área de serviço&#10;Terreno 5x25m"></textarea>
+<div class="g2"><div><label for="st">Situação</label><select id="st"><option value="disponivel">Disponível</option><option value="vendido">Vendido</option><option value="alugado">Alugado</option></select></div></div>
+<div class="ck"><input id="pb" type="checkbox"><label for="pb">Publicado (visível no site)</label></div>
+<div class="ck"><input id="dq" type="checkbox"><label for="dq">Imóvel em destaque na página inicial</label></div>
+<label>Fotos (a primeira é a capa)</label><input id="up" type="file" accept="image/*" multiple><div class="fo" id="fo"></div>
+<div class="ro"><button type="submit" id="sv">Salvar</button><button type="button" class="s" id="pv">Pré-visualizar</button><button type="button" class="s" id="cc">Cancelar</button><button type="button" class="d" id="dl" hidden>Excluir imóvel</button></div>
 </form>
 </section>
-</section>
-</main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0/dist/umd/supabase.min.js"></script>
+</div>
+<dialog id="dg"><div id="dc"></div><div class="ro"><button class="s" id="dx">Fechar</button></div></dialog>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
-(() => {
-  const SUPABASE_URL = "https://wjrrpuvfpufmdtqxblcj.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_eRmq4MZTwppzdIpaltYuaQ_sZBVrE8w";
-  const ADMIN_EMAIL = "novaportugalimobiliaria@gmail.com";
-  const BUCKET = "imoveis-fotos";
-  const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-  const $ = (id) => document.getElementById(id);
-  let currentPhotos = [];
-
-  function message(target, text, error=false) {
-    target.innerHTML = "";
-    if (!text) return;
-    const box = document.createElement("div");
-    box.className = "notice" + (error ? " error" : "");
-    box.textContent = text;
-    target.appendChild(box);
-  }
-  function money(value) {
-    return Number(value || 0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
-  }
-  function isAdmin(user) {
-    return !!user && (user.email || "").toLowerCase() === ADMIN_EMAIL;
-  }
-  function showApp(user) {
-    $("login").classList.add("hidden");
-    $("app").classList.remove("hidden");
-    $("logout").classList.remove("hidden");
-    $("user-label").textContent = user.email || "";
-    loadProperties();
-  }
-  function showLogin() {
-    $("login").classList.remove("hidden");
-    $("app").classList.add("hidden");
-    $("logout").classList.add("hidden");
-    $("user-label").textContent = "";
-  }
-  async function checkSession() {
-    const {data,error} = await client.auth.getSession();
-    if (error) return message($("login-message"),error.message,true);
-    if (isAdmin(data.session?.user)) showApp(data.session.user);
-    else showLogin();
-  }
-
-  $("login-form").addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const button=$("login-button"); button.disabled=true; button.textContent="Entrando…";
-    message($("login-message"),"");
-    const {data,error}=await client.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});
-    button.disabled=false; button.textContent="Entrar no painel";
-    if(error){message($("login-message"),"Não foi possível entrar. Confira o e-mail e a senha.",true);return;}
-    if(!isAdmin(data.user)){await client.auth.signOut();message($("login-message"),"Este usuário não está autorizado a administrar os imóveis.",true);return;}
-    $("password").value=""; showApp(data.user);
-  });
-  $("logout").addEventListener("click",async()=>{await client.auth.signOut();showLogin();});
-  client.auth.onAuthStateChange((_event,session)=>{
-    if(isAdmin(session?.user)) showApp(session.user);
-    else showLogin();
-  });
-
-  async function loadProperties(){
-    const list=$("property-list"); list.innerHTML='<div class="empty">Carregando…</div>';
-    const {data,error}=await client.from("imoveis").select("*").order("created_at",{ascending:false});
-    if(error){list.innerHTML="";message($("message"),"Erro ao carregar imóveis: "+error.message,true);return;}
-    list.innerHTML="";
-    if(!data?.length){list.innerHTML='<div class="empty">Nenhum imóvel cadastrado ainda.</div>';return;}
-    data.forEach(property=>{
-      const card=document.createElement("article");card.className="item";
-      const info=document.createElement("div");
-      const h=document.createElement("h3");h.textContent=property.titulo||"Imóvel sem título";
-      const p=document.createElement("p");p.textContent=(property.tipo||"").toUpperCase()+" · "+money(property.preco)+" · "+(property.endereco||"Endereço não informado");
-      info.append(h,p);
-      const actions=document.createElement("div");actions.className="item-actions";
-      const edit=document.createElement("button");edit.type="button";edit.className="secondary";edit.textContent="Editar";edit.addEventListener("click",()=>editProperty(property));
-      const del=document.createElement("button");del.type="button";del.className="danger";del.textContent="Excluir";del.addEventListener("click",()=>deleteProperty(property));
-      actions.append(edit,del);card.append(info,actions);list.append(card);
-    });
-  }
-  function editProperty(p){
-    $("editor").classList.remove("hidden");$("editor-title").textContent="Editar imóvel";
-    $("property-id").value=p.id;$("title").value=p.titulo||"";$("type").value=p.tipo||"aluguel";
-    $("price").value=p.preco??"";$("address").value=p.endereco||"";
-    $("bedrooms").value=p.quartos??0;$("bathrooms").value=p.banheiros??0;$("parking").value=p.vagas??0;
-    $("description").value=p.descricao||"";currentPhotos=Array.isArray(p.fotos)?[...p.fotos]:[];
-    $("photos").value="";renderPhotos();$("editor").scrollIntoView({behavior:"smooth",block:"start"});
-  }
-  function renderPhotos(){
-    const area=$("photo-preview");area.innerHTML="";
-    currentPhotos.forEach((url,index)=>{
-      const wrap=document.createElement("div");wrap.style.position="relative";
-      const img=document.createElement("img");img.src=url;img.alt="Foto do imóvel";
-      const remove=document.createElement("button");remove.type="button";remove.textContent="×";remove.className="danger";
-      remove.style.cssText="position:absolute;right:2px;top:2px;padding:1px 7px;border-radius:50%";
-      remove.addEventListener("click",()=>{currentPhotos.splice(index,1);renderPhotos();});
-      wrap.append(img,remove);area.append(wrap);
-    });
-  }
-  $("photos").addEventListener("change",()=>{
-    const files=Array.from($("photos").files||[]);
-    if(files.length>15){message($("message"),"Selecione no máximo 15 fotos por envio.",true);$("photos").value="";return;}
-    for(const file of files){if(file.size>12*1024*1024){message($("message"),"Cada foto deve ter até 12 MB.",true);$("photos").value="";return;}}
-  });
-  async function uploadPhotos(files){
-    const urls=[];
-    for(const file of files){
-      const safe=file.name.normalize("NFKD").replace(/[^a-zA-Z0-9._-]/g,"-");
-      const path="imoveis/"+crypto.randomUUID()+"-"+safe;
-      const {error}=await client.storage.from(BUCKET).upload(path,file,{cacheControl:"3600",upsert:false,contentType:file.type});
-      if(error) throw error;
-      const {data}=client.storage.from(BUCKET).getPublicUrl(path);
-      urls.push(data.publicUrl);
-    }
-    return urls;
-  }
-  $("property-form").addEventListener("submit",async(event)=>{
-    event.preventDefault();
-    const button=$("save-button");button.disabled=true;button.textContent="Salvando…";message($("message"),"");
-    try{
-      const uploaded=await uploadPhotos(Array.from($("photos").files||[]));
-      const payload={
-        titulo:$("title").value.trim(),tipo:$("type").value,preco:Number($("price").value),
-        endereco:$("address").value.trim()||null,quartos:Number($("bedrooms").value||0),
-        banheiros:Number($("bathrooms").value||0),vagas:Number($("parking").value||0),
-        descricao:$("description").value.trim()||null,fotos:[...currentPhotos,...uploaded]
-      };
-      const id=$("property-id").value;
-      const result=id?await client.from("imoveis").update(payload).eq("id",id):await client.from("imoveis").insert(payload);
-      if(result.error) throw result.error;
-      message($("message"),"Imóvel salvo com sucesso.");
-      resetEditor();await loadProperties();
-    }catch(error){message($("message"),"Não foi possível salvar: "+(error.message||"erro desconhecido"),true);}
-    finally{button.disabled=false;button.textContent="Salvar imóvel";}
-  });
-  function resetEditor(){
-    $("property-form").reset();$("property-id").value="";$("editor-title").textContent="Novo imóvel";
-    $("editor").classList.add("hidden");currentPhotos=[];$("photo-preview").innerHTML="";
-  }
-  $("new-property").addEventListener("click",()=>{resetEditor();$("editor").classList.remove("hidden");$("editor-title").textContent="Novo imóvel";$("editor").scrollIntoView({behavior:"smooth"});});
-  $("cancel-edit").addEventListener("click",resetEditor);
-  $("refresh").addEventListener("click",loadProperties);
-  async function deleteProperty(p){
-    if(!confirm("Excluir o imóvel “"+(p.titulo||"sem título")+"”?"))return;
-    const {error}=await client.from("imoveis").delete().eq("id",p.id);
-    if(error){message($("message"),"Não foi possível excluir: "+error.message,true);return;}
-    message($("message"),"Imóvel excluído. As fotos antigas no Storage não foram removidas automaticamente.");
-    await loadProperties();
-  }
-  checkSession();
+(function(){
+var $=function(s){return document.querySelector(s)},C=window.NP_CONFIG||{},B="imoveis-fotos",marker="/storage/v1/object/public/"+B+"/";
+var sb=(C.url&&C.key&&window.supabase)?supabase.createClient(C.url,C.key):null;
+var rows=[],cur=null,fotos=[];
+function show(id){["login","rec","app"].forEach(function(k){$("#"+k).hidden=k!==id})}
+var mt;function msg(t,ok){var m=$("#msg");m.textContent=t;m.className=ok?"ok":"er";m.hidden=false;clearTimeout(mt);mt=setTimeout(function(){m.hidden=true},ok?4000:9000)}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function fail(e,pre){msg((pre||"Erro")+": "+(e&&e.message?e.message:e),false)}
+if(!sb){show("login");msg("O painel ainda não está conectado ao Supabase. Preencha o arquivo config.js (veja o LEIA-ME).",false);$("#fl").querySelectorAll("button").forEach(function(b){b.disabled=true});return}
+/* acesso */
+$("#fl").onsubmit=function(e){e.preventDefault();sb.auth.signInWithPassword({email:$("#le").value.trim(),password:$("#lp").value}).then(function(r){if(r.error)return msg("E-mail ou senha incorretos.",false);enter()})};
+$("#fg").onclick=function(){var em=$("#le").value.trim();if(!em)return msg("Digite seu e-mail e clique de novo em “Esqueci a senha”.",false);sb.auth.resetPasswordForEmail(em,{redirectTo:location.origin+location.pathname}).then(function(r){r.error?fail(r.error):msg("Se o e-mail estiver cadastrado, você receberá um link para criar uma nova senha.",true)})};
+$("#fr").onsubmit=function(e){e.preventDefault();sb.auth.updateUser({password:$("#np").value}).then(function(r){if(r.error)return fail(r.error);msg("Senha alterada com sucesso.",true);enter()})};
+$("#out").onclick=function(){sb.auth.signOut().then(function(){show("login")})};
+sb.auth.onAuthStateChange(function(ev){if(ev==="PASSWORD_RECOVERY")show("rec")});
+function enter(){sb.auth.getSession().then(function(r){var s=r.data&&r.data.session;if(!s)return show("login");if((s.user.email||"").toLowerCase()!=="novaportugalimobiliaria@gmail.com"){sb.auth.signOut();show("login");return msg("Esta conta não tem permissão de administrador.",false)}show("app");load()})}
+/* lista */
+function money(r){return"R$ "+Number(r.preco).toLocaleString("pt-BR")+((r.tipo||"").toLowerCase()==="aluguel"?"/mês":"")}
+function load(){sb.from("imoveis").select("*").order("ordem").order("created_at").then(function(r){if(r.error)return fail(r.error,"Não foi possível carregar");rows=r.data;paint()})}
+function paint(){$("#lst").innerHTML=rows.length?rows.map(function(r){return'<div class="it"><img alt="" src="'+esc((r.fotos||[])[0]||"")+'"><div><b>'+esc(r.titulo)+'</b><small>'+esc(r.endereco)+" · "+money(r)+'</small><span class="pill">'+(r.publicado?"Publicado":"Oculto")+'</span>'+(r.destaque?'<span class="pill">Destaque</span>':"")+(r.status!=="disponivel"?'<span class="pill">'+esc(r.status)+"</span>":"")+'</div><div class="ac"><button class="sm" data-a="ed" data-i="'+r.id+'">Editar</button><button class="sm s" data-a="pb" data-i="'+r.id+'">'+(r.publicado?"Ocultar":"Publicar")+'</button><button class="sm s" data-a="dq" data-i="'+r.id+'">'+(r.destaque?"Tirar destaque":"Destacar")+'</button></div></div>'}).join(""):"<p>Nenhum imóvel cadastrado ainda.</p>"}
+$("#lst").onclick=function(e){var b=e.target.closest("button");if(!b)return;var r=rows.filter(function(x){return x.id===b.dataset.i})[0];if(!r)return;
+if(b.dataset.a==="ed")return edit(r);var up=b.dataset.a==="pb"?{publicado:!r.publicado}:{destaque:!r.destaque};b.disabled=true;sb.from("imoveis").update(up).eq("id",r.id).then(function(x){x.error?fail(x.error):msg("Alteração salva.",true);load()})};
+/* formulário */
+function edit(r){cur=r;fotos=r?(r.fotos||[]).slice():[];$("#et").textContent=r?"Editar imóvel":"Novo imóvel";$("#dl").hidden=!r;
+$("#fi").value=r?(r.tipo||"venda").toLowerCase():"venda";$("#tp").value=r&&r.categoria?r.categoria:"Casa";$("#ti").value=r?r.titulo:"";$("#en").value=r?r.endereco:"";$("#ba").value=r&&r.bairro||"";$("#pr").value=r?r.preco:"";$("#qu").value=r&&r.quartos!=null?r.quartos:"";$("#bn").value=r&&r.banheiros!=null?r.banheiros:"";$("#vg").value=r&&r.vagas!=null?r.vagas:"";$("#de").value=r&&r.descricao||"";
+$("#dt").value=r?(r.caracteristicas||[]).join("\n"):"";$("#st").value=r?r.status:"disponivel";$("#pb").checked=r?r.publicado:true;$("#dq").checked=r?r.destaque:false;$("#up").value="";fp();$("#ed").hidden=false;$("#ed").scrollIntoView({behavior:"smooth"})}
+$("#nw").onclick=function(){edit(null)};$("#cc").onclick=function(){$("#ed").hidden=true};
+function fp(){$("#fo").innerHTML=fotos.map(function(u,i){return'<div class="ft"><img alt="Foto '+(i+1)+'" src="'+esc(u)+'">'+(i===0?"<b>Capa</b>":"")+'<div><button type="button" class="sm s" data-f="c" data-i="'+i+'">Capa</button><button type="button" class="sm s" data-f="u" data-i="'+i+'" aria-label="Mover para antes">←</button><button type="button" class="sm s" data-f="d" data-i="'+i+'" aria-label="Mover para depois">→</button><button type="button" class="sm d" data-f="x" data-i="'+i+'">Remover</button></div></div>'}).join("")}
+$("#fo").onclick=function(e){var b=e.target.closest("button");if(!b)return;var i=+b.dataset.i,k=b.dataset.f,t;
+if(k==="x"){var u=fotos.splice(i,1)[0];if(u.indexOf(marker)>-1)sb.storage.from(B).remove([decodeURIComponent(u.split(marker)[1])])}
+else if(k==="c"&&i>0){t=fotos.splice(i,1)[0];fotos.unshift(t)}else if(k==="u"&&i>0){t=fotos[i];fotos[i]=fotos[i-1];fotos[i-1]=t}else if(k==="d"&&i<fotos.length-1){t=fotos[i];fotos[i]=fotos[i+1];fotos[i+1]=t}fp()};
+function shrink(f){return createImageBitmap(f).then(function(bm){var s=Math.min(1,1600/Math.max(bm.width,bm.height)),c=document.createElement("canvas");c.width=Math.round(bm.width*s);c.height=Math.round(bm.height*s);c.getContext("2d").drawImage(bm,0,0,c.width,c.height);return new Promise(function(ok){c.toBlob(function(b){ok(b)},"image/webp",.82)})})}
+$("#up").onchange=function(){var fs=Array.prototype.slice.call(this.files);if(!fs.length)return;var btn=$("#sv");btn.disabled=true;msg("Enviando "+fs.length+" foto(s)…",true);
+fs.reduce(function(p,f){return p.then(function(){return shrink(f).then(function(blob){var path=(cur?cur.id:"novo")+"/"+Date.now()+"-"+Math.random().toString(36).slice(2,8)+".webp";return sb.storage.from(B).upload(path,blob,{contentType:"image/webp",cacheControl:"31536000"}).then(function(r){if(r.error)throw r.error;fotos.push(sb.storage.from(B).getPublicUrl(path).data.publicUrl);fp()})})})},Promise.resolve()).then(function(){msg("Fotos enviadas. Clique em Salvar para concluir.",true)}).catch(function(e){fail(e,"Falha no envio da foto")}).then(function(){btn.disabled=false;$("#up").value=""})};
+function payload(){var nn=function(s){return $(s).value===""?null:+$(s).value};
+return{tipo:$("#fi").value.toLowerCase(),categoria:$("#tp").value,titulo:$("#ti").value.trim(),endereco:$("#en").value.trim(),bairro:$("#ba").value.trim()||null,preco:+$("#pr").value,quartos:nn("#qu"),banheiros:nn("#bn"),vagas:nn("#vg"),descricao:$("#de").value.trim(),caracteristicas:$("#dt").value.split("\n").map(function(l){return l.trim()}).filter(Boolean),fotos:fotos,status:$("#st").value,publicado:$("#pb").checked,destaque:$("#dq").checked,atualizado_em:new Date().toISOString()}}
+$("#ed").onsubmit=function(e){e.preventDefault();var p=payload();if(!(p.preco>=0))return msg("Informe o preço.",false);if(p.publicado&&!fotos.length&&!confirm("Este imóvel não tem fotos. Publicar mesmo assim?"))return;
+if(!cur)p.ordem=rows.length+1;var q=cur?sb.from("imoveis").update(p).eq("id",cur.id):sb.from("imoveis").insert(p);$("#sv").disabled=true;
+q.then(function(r){$("#sv").disabled=false;if(r.error)return fail(r.error,"Não foi possível salvar");msg("Imóvel salvo.",true);$("#ed").hidden=true;load()})};
+$("#dl").onclick=function(){if(!cur||!confirm("Excluir “"+cur.titulo+"” e suas fotos? Isso não pode ser desfeito."))return;var paths=(cur.fotos||[]).filter(function(u){return u.indexOf(marker)>-1}).map(function(u){return decodeURIComponent(u.split(marker)[1])});
+sb.from("imoveis").delete().eq("id",cur.id).then(function(r){if(r.error)return fail(r.error,"Não foi possível excluir");if(paths.length)sb.storage.from(B).remove(paths);msg("Imóvel excluído.",true);$("#ed").hidden=true;load()})};
+$("#pv").onclick=function(){var p=payload();$("#dc").innerHTML=(fotos[0]?'<img alt="Capa" src="'+esc(fotos[0])+'">':"")+"<h2 style=\"margin-top:1rem\">"+esc(p.titulo||"(sem título)")+"</h2><p><b>R$ "+Number(p.preco||0).toLocaleString("pt-BR")+((p.tipo||"").toLowerCase()==="aluguel"?"/mês":"")+"</b> · "+esc(p.endereco)+"</p><p>"+esc(p.descricao).replace(/\n/g,"<br>")+"</p><p><small>"+(p.publicado?"Será exibido no site.":"Está oculto: só aparece aqui no painel.")+"</small></p>";$("#dg").showModal()};
+$("#dx").onclick=function(){$("#dg").close()};
+if(/type=recovery/.test(location.hash))show("rec");else enter();
 })();
 </script>
 </body>
