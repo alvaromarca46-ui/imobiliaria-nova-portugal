@@ -34,7 +34,7 @@ dialog{border:0;border-radius:20px;padding:1.2rem;width:min(560px,94vw);backgrou
 <div id="msg" role="status" aria-live="polite" hidden></div>
 
 <section id="login" class="lg" hidden><h1>Painel · Nova Portugal</h1><p style="color:var(--mu)">Acesso exclusivo do responsável pela imobiliária.</p>
-<form id="fl" class="bx"><label for="le">E-mail</label><input id="le" type="email" value="novaportugalimobiliaria@gmail.com" autocomplete="username" required><label for="lp">Senha</label><input id="lp" type="password" autocomplete="current-password" required>
+<form id="fl" class="bx"><label for="le">E-mail</label><input id="le" type="email" value="alvaromarca46@gmail.com" autocomplete="username" required><label for="lp">Senha</label><input id="lp" type="password" autocomplete="current-password" required>
 <div class="ro"><button type="submit">Entrar</button><button type="button" class="s" id="fg">Esqueci a senha</button></div></form></section>
 
 <section id="rec" class="lg" hidden><h1>Criar nova senha</h1><form id="fr" class="bx"><label for="np">Nova senha (mínimo 8 caracteres)</label><input id="np" type="password" minlength="8" autocomplete="new-password" required><div class="ro"><button type="submit">Salvar nova senha</button></div></form></section>
@@ -81,7 +81,7 @@ $("#fg").onclick=function(){var em=$("#le").value.trim();if(!em)return msg("Digi
 $("#fr").onsubmit=function(e){e.preventDefault();sb.auth.updateUser({password:$("#np").value}).then(function(r){if(r.error)return fail(r.error);msg("Senha alterada com sucesso.",true);enter()})};
 $("#out").onclick=function(){sb.auth.signOut().then(function(){show("login")})};
 sb.auth.onAuthStateChange(function(ev){if(ev==="PASSWORD_RECOVERY")show("rec")});
-function enter(){sb.auth.getSession().then(function(r){var s=r.data&&r.data.session;if(!s)return show("login");if((s.user.email||"").toLowerCase()!=="novaportugalimobiliaria@gmail.com"){sb.auth.signOut();show("login");return msg("Esta conta não tem permissão de administrador.",false)}show("app");load()})}
+function enter(){sb.auth.getSession().then(function(r){var s=r.data&&r.data.session;if(!s)return show("login");if((s.user.email||"").toLowerCase()!=="alvaromarca46@gmail.com"){sb.auth.signOut();show("login");return msg("Esta conta não tem permissão de administrador.",false)}show("app");load()})}
 /* lista */
 function money(r){return"R$ "+Number(r.preco).toLocaleString("pt-BR")+((r.tipo||"").toLowerCase()==="aluguel"?"/mês":"")}
 function load(){sb.from("imoveis").select("*").order("ordem").order("created_at").then(function(r){if(r.error)return fail(r.error,"Não foi possível carregar");rows=r.data;paint()})}
