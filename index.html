@@ -146,6 +146,54 @@ h1 em{color:var(--accent)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101713;--surface:#19231D;--ink:#F1F3EE;--muted:#A8B2AA;--line:#2A3930;--accent:#86C6A1;--deep:#0B2016}}
 :root[data-theme="dark"]{--bg:#101713;--surface:#19231D;--ink:#F1F3EE;--muted:#A8B2AA;--line:#2A3930;--accent:#86C6A1;--deep:#0B2016}
 
+
+/* REDESIGN VISUAL MAIS MARCANTE — prévia */
+:root{--bg:#F5F3EC;--surface:#FFFFFF;--ink:#18251F;--muted:#65736B;--line:#DCE3DA;--accent:#174B35;--deep:#0D3022;--red:#B93A32;--yellow:#D6A72C;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#F5F3EC;--surface:#FFFFFF;--ink:#18251F;--muted:#65736B;--line:#DCE3DA;--accent:#174B35;--deep:#0D3022;color-scheme:light}}
+:root[data-theme="dark"]{--bg:#F5F3EC;--surface:#FFFFFF;--ink:#18251F;--muted:#65736B;--line:#DCE3DA;--accent:#174B35;--deep:#0D3022;color-scheme:light}
+body{background:var(--bg)}
+header{background:#103B2A;color:#fff;border-bottom:1px solid rgba(255,255,255,.14)}
+header .brand,header nav a:not(.btn),header .burger{color:#fff}
+header .brand small{color:rgba(255,255,255,.68)}
+header .mark{background:#E7E9D9;color:#103B2A}
+header .btn{background:#F3F0E6;color:#103B2A;border-color:#F3F0E6}
+header .btn:hover{background:#fff}
+.hero{padding-top:clamp(24px,4vw,52px);padding-bottom:clamp(42px,6vw,76px)}
+.hero .hg{position:relative;overflow:hidden;background:linear-gradient(125deg,#0D3022 0%,#174B35 58%,#286447 100%);border-radius:28px;padding:clamp(28px,6vw,76px);box-shadow:0 24px 60px rgba(16,59,42,.16);color:#fff}
+.hero .hg:after{content:"";position:absolute;width:360px;height:360px;border:1px solid rgba(255,255,255,.13);border-radius:50%;right:-110px;top:-145px;box-shadow:0 0 0 35px rgba(255,255,255,.035),0 0 0 75px rgba(255,255,255,.025);pointer-events:none}
+.hero .hg h1,.hero .hg h1 b{color:#fff}
+.hero .hg h1 em{color:#E6C76D}
+.hero .hg .lead{color:rgba(255,255,255,.78);max-width:590px}
+.hero .hg .proof,.hero .hg .proof span{color:rgba(255,255,255,.76)}
+.hero .hg .proof b{color:#F1D889}
+.hero .hg .flag i{background:#fff}
+.hero .hg .flag i:nth-child(2){background:#D84B40}
+.hero .hg .flag i:nth-child(3){background:#E6C76D}
+.hero .hg .btn{background:#F2EEDC;color:#103B2A;border-color:#F2EEDC}
+.hero .hg .btn.g{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.hero .hg .btn:hover{transform:translateY(-2px)}
+.hero-search{position:relative;z-index:2;margin:26px 0 0;background:#fff;color:#18251F;border:1px solid rgba(255,255,255,.55);border-radius:18px;padding:18px;box-shadow:0 18px 42px rgba(0,0,0,.16)}
+.hero-search label{color:#526158}
+.hero-search input,.hero-search select{background:#F7F8F5;border:1px solid #DCE3DA;color:#18251F;border-radius:10px}
+.hero-search button,.hero-search .btn{background:#174B35;color:#fff;border-color:#174B35}
+.head h2,.about h2{letter-spacing:-.035em}
+#imoveis{padding-top:clamp(48px,7vw,88px);padding-bottom:clamp(48px,7vw,88px)}
+.card{border:1px solid #E0E5DD;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 8px 28px rgba(23,52,38,.06);transition:transform .25s ease,box-shadow .25s ease}
+.card:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(23,52,38,.12)}
+.card .ci{background:#E8ECE5}
+.card .cb{padding:20px}
+.card .price{color:#174B35}
+.card .btn{background:#174B35;color:#fff;border-color:#174B35}
+.about{background:#103B2A;color:#fff;padding-top:clamp(54px,8vw,100px);padding-bottom:clamp(54px,8vw,100px)}
+.about h2,.about dd{color:#fff}
+.about p,.about dt{color:rgba(255,255,255,.72)}
+.about dl>div{border-color:rgba(255,255,255,.2)}
+#servicos{padding-top:clamp(54px,8vw,96px);padding-bottom:clamp(54px,8vw,96px)}
+#servicos .sv>a{border:1px solid #DCE3DA;border-radius:16px;background:#fff;padding:24px;box-shadow:0 8px 24px rgba(23,52,38,.05)}
+footer{background:#0D3022;color:rgba(255,255,255,.78)}
+footer a{color:#fff}
+@media(max-width:700px){.hero .hg{border-radius:20px;padding:28px 22px}.hero-search{padding:14px;margin-top:22px}.card .cb{padding:16px}}
+
 </style>
 </head>
 <body>
