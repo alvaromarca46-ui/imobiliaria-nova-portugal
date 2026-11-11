@@ -579,6 +579,48 @@ dialog#lb .lc{color:#f2f1e9}
  .new-contact-card{background:#19231d}
 }
 
+
+/* AJUSTE FINAL — nenhum botão claro no tema escuro */
+:root{
+  --bg:#0B1511!important;
+  --surface:#14231B!important;
+  --ink:#F1F3EC!important;
+  --muted:#AAB7AC!important;
+  --line:rgba(218,190,119,.22)!important;
+  --accent:#C5A45A!important;
+  --deep:#08110D!important;
+}
+body{background:#0B1511!important;color:#F1F3EC!important}
+button,.btn,.btn:not(.g),a.btn,
+header .btn,.hero .hg .btn,.hero-search button,.hero-search .btn,
+.card .btn,.new-contact-actions .btn{
+  background:#C5A45A!important;
+  color:#101710!important;
+  border:1px solid #C5A45A!important;
+}
+.btn.g,.hero .hg .btn.g,.new-contact-actions .btn.g{
+  background:transparent!important;
+  color:#E8D8AE!important;
+  border:1px solid rgba(197,164,90,.58)!important;
+}
+button:not(.btn):not(.gm):not(.x):not(.burger):not(.th button),
+.arr button,.seg button,.th button,.lc button,.x,.burger{
+  background:#14231B!important;
+  color:#E8D8AE!important;
+  border-color:rgba(197,164,90,.35)!important;
+}
+.seg button[aria-pressed="true"]{background:#C5A45A!important;color:#101710!important}
+.card,.new-contact-card,.hero-search,#imoveis,.new-services,.flt input,.flt select{
+  background:#14231B!important;color:#F1F3EC!important;border-color:rgba(197,164,90,.2)!important;
+}
+.card .price,.new-overline,.new-listing-intro,.new-about-copy,.new-services-heading,
+.new-contact-top,.new-footer,.new-footer a,.new-footer-brand p{
+  color:#E8E2D2!important;
+}
+.card .cb h3 a,.card .ad,.card .mt{color:#E3E9E1!important}
+.hero-search label,.hero-search .hs-field span{color:#B9C5BA!important}
+.hero-search input,.hero-search select{color:#F1F3EC!important;background:#0B1511!important}
+
 </style>
 </head>
 <body>
