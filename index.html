@@ -580,6 +580,35 @@ dialog#lb .lc{color:#f2f1e9}
 }
 
 
+
+/* FUNDOS FOTOGRÁFICOS — texto sempre legível */
+.new-about{
+ background-image:linear-gradient(90deg,rgba(5,13,9,.94) 0%,rgba(5,13,9,.84) 58%,rgba(5,13,9,.68) 100%),url('15.webp')!important;
+ background-size:cover!important;background-position:center 45%!important;
+}
+.new-services{
+ position:relative;isolation:isolate;
+ background:linear-gradient(90deg,rgba(5,13,9,.94),rgba(5,13,9,.82)),url('09.webp') center/cover no-repeat!important;
+ color:#f5f2e9!important;
+}
+.new-services .new-services-heading h2,.new-services .new-services-heading p,
+.new-services .new-service-grid a,.new-services .new-overline{color:#f5f2e9!important}
+.new-services .new-service-grid a{
+ background:rgba(10,25,17,.72)!important;border:1px solid rgba(211,181,104,.34)!important;
+ backdrop-filter:blur(5px);box-shadow:0 12px 35px rgba(0,0,0,.22)!important;
+}
+.new-contact-top{
+ background:linear-gradient(90deg,rgba(5,13,9,.92),rgba(5,13,9,.7)),url('20.webp') center 48%/cover no-repeat!important;
+ color:#fff!important;
+}
+.new-contact-top h2,.new-contact-top p,.new-contact-top .new-overline{color:#fff!important}
+.new-about,.new-services,.new-contact-top{background-attachment:scroll!important}
+@media(max-width:700px){
+ .new-about{background-position:58% center!important}
+ .new-services{background-position:60% center!important}
+ .new-contact-top{background-position:center!important}
+}
+
 /* AJUSTE FINAL — nenhum botão claro no tema escuro */
 :root{
   --bg:#0B1511!important;
