@@ -2,21 +2,33 @@
 
 Site institucional da Imobiliária Nova Portugal.
 
-## O que está neste repositório
+## Arquivos
 
-- `index.html`: site estático, responsivo, com catálogo e fotos incorporadas no próprio HTML.
-- As fotos dos quatro imóveis estão incorporadas no arquivo para que não dependam de uma pasta externa.
+- `index.html`: site público estático, responsivo, com catálogo e fotos incorporadas.
+- `admin.html`: painel administrativo conectado ao Supabase para login, cadastro, edição, exclusão e upload de fotos dos imóveis.
 
-## Publicação na Vercel
+## Painel administrativo
 
-1. Acesse https://vercel.com/ e entre com sua conta.
-2. Escolha **Add New → Project**.
-3. Importe o repositório `alvaromarca46-ui/imobiliaria-nova-portugal`.
-4. Como é um site HTML estático, selecione **Other** (ou deixe a detecção automática sem framework).
-5. Deixe Build Command e Output Directory vazios, se a Vercel permitir.
-6. Clique em **Deploy**.
+Após a publicação na Vercel, acesse `/admin.html`.
 
-O arquivo `index.html` fica na raiz do repositório, então a Vercel o utiliza como página inicial.
+- Login autorizado: `novaportugalimobiliaria@gmail.com`
+- O usuário já existe no Supabase Auth. A senha não é armazenada neste repositório; entre com a senha configurada no Supabase.
+- O painel utiliza a tabela `public.imoveis` e o bucket `imoveis-fotos`.
+- O painel usa apenas a chave pública (publishable) do Supabase. Não contém chave `service_role`.
+- O acesso administrativo é validado no cliente e reforçado por políticas RLS no banco e no Storage.
+
+## Banco Supabase
+
+Projeto: `wjrrpuvfpufmdtqxblcj`
+
+Tabela `public.imoveis`:
+`id`, `titulo`, `descricao`, `preco`, `tipo`, `endereco`, `quartos`, `banheiros`, `vagas`, `fotos`, `created_at`.
+
+Bucket de imagens: `imoveis-fotos` (público para exibição das fotos). Upload, atualização e exclusão via Storage são permitidos apenas para o e-mail administrativo autorizado.
+
+## Limitação atual
+
+O catálogo da página inicial `index.html` ainda é estático e não consulta automaticamente a tabela `imoveis`. O painel grava no Supabase, mas a sincronização automática do catálogo público com o banco ainda precisa ser implementada e testada.
 
 ## Dados institucionais
 
@@ -26,18 +38,6 @@ O arquivo `index.html` fica na raiz do repositório, então a Vercel o utiliza c
 - E-mail: novaportugalimobiliaria@gmail.com
 - Instagram: https://www.instagram.com/novaportugal_.imobiliaria/
 
-## Importante: Supabase e painel administrativo
+## Publicação
 
-A página atual é uma versão estática. Ela não está conectada ao Supabase e não possui painel administrativo funcional neste repositório.
-
-O projeto Supabase que precisa ser conectado tem tabelas chamadas `properties`, `property_images` e `admins`. Os arquivos administrativos encontrados em versões anteriores usam uma estrutura diferente (`imoveis` e bucket `imoveis-fotos`). Não foram copiados para evitar consultas e alterações incompatíveis com o banco existente.
-
-Antes de criar ou alterar tabelas, políticas RLS, autenticação ou Storage, é necessário confirmar o Project Ref e inspecionar as colunas e políticas reais do projeto correto. Nenhuma chave secreta deve ser colocada no código do navegador.
-
-## Próximas etapas
-
-1. Confirmar o Project Ref do Supabase correto.
-2. Conferir as estruturas de `properties`, `property_images` e `admins`, além das políticas RLS e buckets.
-3. Adaptar o site e construir o painel administrativo para esse esquema.
-4. Configurar as URLs de autenticação depois que a Vercel fornecer o domínio de implantação.
-5. Testar cadastro, edição, publicação, upload de fotos e permissões.
+A Vercel está conectada ao repositório `alvaromarca46-ui/imobiliaria-nova-portugal`. Cada commit na branch `main` pode iniciar uma nova implantação. Para um site HTML estático, não é necessário comando de build.
