@@ -4,18 +4,25 @@ Site institucional da Imobiliária Nova Portugal.
 
 ## Arquivos
 
-- `index.html`: site público estático, responsivo, com catálogo e fotos incorporadas.
-- `admin.html`: painel administrativo conectado ao Supabase para login, cadastro, edição, exclusão e upload de fotos dos imóveis.
+- `index.html`: site público responsivo, com catálogo dinâmico conectado ao Supabase e fotos incorporadas como imagens de apoio para os quatro anúncios iniciais.
+- `admin.html`: painel administrativo para login, cadastro, edição, exclusão e upload de fotos dos imóveis.
+
+## Catálogo público e Supabase
+
+O catálogo público consulta a tabela `public.imoveis` e atualiza os imóveis em destaque, filtros, contagem e páginas individuais. Se a consulta ao Supabase falhar, a página mantém os quatro anúncios iniciais como fallback.
+
+Os quatro imóveis iniciais foram inseridos na tabela existente. Para esses registros, o site mantém as fotos que já estavam incorporadas no HTML; fotos enviadas pelo painel são exibidas a partir do bucket `imoveis-fotos`.
+
+O site usa apenas a chave pública (publishable) do Supabase. Nenhuma chave `service_role` está no navegador.
 
 ## Painel administrativo
 
-Após a publicação na Vercel, acesse `/admin.html`.
+Após a publicação, acesse `/admin.html`.
 
-- Login autorizado: `novaportugalimobiliaria@gmail.com`
-- O usuário já existe no Supabase Auth. A senha não é armazenada neste repositório; entre com a senha configurada no Supabase.
-- O painel utiliza a tabela `public.imoveis` e o bucket `imoveis-fotos`.
-- O painel usa apenas a chave pública (publishable) do Supabase. Não contém chave `service_role`.
-- O acesso administrativo é validado no cliente e reforçado por políticas RLS no banco e no Storage.
+- E-mail autorizado: `novaportugalimobiliaria@gmail.com`
+- O usuário já existe no Supabase Auth. Use a senha definida para essa conta.
+- O painel utiliza `public.imoveis` e o bucket `imoveis-fotos`.
+- As políticas RLS e Storage restringem alterações e uploads ao e-mail administrativo autorizado.
 
 ## Banco Supabase
 
@@ -24,11 +31,7 @@ Projeto: `wjrrpuvfpufmdtqxblcj`
 Tabela `public.imoveis`:
 `id`, `titulo`, `descricao`, `preco`, `tipo`, `endereco`, `quartos`, `banheiros`, `vagas`, `fotos`, `created_at`.
 
-Bucket de imagens: `imoveis-fotos` (público para exibição das fotos). Upload, atualização e exclusão via Storage são permitidos apenas para o e-mail administrativo autorizado.
-
-## Limitação atual
-
-O catálogo da página inicial `index.html` ainda é estático e não consulta automaticamente a tabela `imoveis`. O painel grava no Supabase, mas a sincronização automática do catálogo público com o banco ainda precisa ser implementada e testada.
+Bucket de imagens: `imoveis-fotos` (público para exibição; operações de escrita restritas ao administrador).
 
 ## Dados institucionais
 
@@ -40,4 +43,4 @@ O catálogo da página inicial `index.html` ainda é estático e não consulta a
 
 ## Publicação
 
-A Vercel está conectada ao repositório `alvaromarca46-ui/imobiliaria-nova-portugal`. Cada commit na branch `main` pode iniciar uma nova implantação. Para um site HTML estático, não é necessário comando de build.
+Repositório conectado à Vercel: `alvaromarca46-ui/imobiliaria-nova-portugal`, branch `main`. A Vercel cria implantações automaticamente a cada commit.
