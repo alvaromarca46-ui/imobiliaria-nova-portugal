@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Painel administrativo | Nova Portugal</title>
+<style>
+:root{color-scheme:light;--green:#173f32;--green2:#245b47;--cream:#f6f5f0;--ink:#202820;--muted:#6d756e;--line:#e3e6df;--red:#a33b32}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+header{background:var(--green);color:white;padding:20px max(20px,calc((100vw - 1120px)/2));display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:Georgia,serif;font-size:22px;letter-spacing:.02em}.brand small{display:block;font:11px system-ui;letter-spacing:.16em;text-transform:uppercase;opacity:.8}
+main{max-width:1120px;margin:32px auto;padding:0 18px}.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 8px 28px #1b34200a;margin-bottom:20px}
+h1,h2{margin:0 0 8px;font-family:Georgia,serif;font-weight:500}h1{font-size:30px}h2{font-size:23px}.muted{color:var(--muted)}.hidden{display:none!important}
+label{display:block;font-size:13px;font-weight:650;margin:0 0 6px}input,select,textarea{width:100%;border:1px solid #d8ded7;border-radius:9px;padding:12px;font:inherit;background:white;color:var(--ink)}textarea{min-height:90px;resize:vertical}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{margin-top:14px}.full{grid-column:1/-1}
+button{border:0;border-radius:9px;padding:11px 16px;background:var(--green2);color:white;font:600 14px system-ui;cursor:pointer}button.secondary{background:#e9eee9;color:var(--green)}button.danger{background:#f8e9e7;color:var(--red)}button:disabled{opacity:.55;cursor:wait}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.top-actions{display:flex;gap:10px;align-items:center}
+.notice{padding:12px 14px;border-radius:9px;margin:14px 0;background:#edf4ed;color:#244c36}.notice.error{background:#f9e9e7;color:#8f3028}
+.cards{display:grid;gap:12px;margin-top:18px}.item{border:1px solid var(--line);border-radius:12px;padding:15px;display:flex;align-items:center;gap:14px;justify-content:space-between}.item h3{margin:0 0 3px;font-size:16px}.item p{margin:0;color:var(--muted);font-size:13px}.item-actions{display:flex;gap:8px;flex-shrink:0}
+#login{max-width:440px;margin:8vh auto}.login-title{margin-bottom:20px}.photo-preview{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.photo-preview img{width:88px;height:70px;object-fit:cover;border-radius:7px;border:1px solid var(--line)}
+.status{font-size:13px;color:#e8f2e9}.empty{padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+@media(max-width:650px){header{padding:16px 18px}main{margin:18px auto}.panel{padding:18px}.grid{grid-template-columns:1fr}.full{grid-column:auto}.item{align-items:flex-start;flex-direction:column}.item-actions{width:100%}.item-actions button{flex:1}h1{font-size:26px}}
+</style>
+</head>
+<body>
+<header><div class="brand">Nova Portugal<small>Imobiliária · Painel administrativo</small></div><div class="top-actions"><span id="user-label" class="status"></span><button id="logout" class="secondary hidden" type="button">Sair</button></div></header>
+<main>
+<section id="login" class="panel">
+<div class="login-title"><h1>Acesso administrativo</h1><p class="muted">Entre com a conta autorizada da Imobiliária Nova Portugal.</p></div>
+<form id="login-form">
+<div class="field"><label for="email">E-mail</label><input id="email" type="email" value="novaportugalimobiliaria@gmail.com" autocomplete="username" required></div>
+<div class="field"><label for="password">Senha</label><input id="password" type="password" autocomplete="current-password" required></div>
+<div class="actions"><button id="login-button" type="submit">Entrar no painel</button></div>
+</form><div id="login-message" aria-live="polite"></div>
+<p class="muted" style="font-size:12px;margin-top:18px">Se ainda não definiu uma senha, use “Esqueci minha senha” no fluxo de recuperação do Supabase ou configure uma senha para este usuário no painel do Supabase.</p>
+</section>
+
+<section id="app" class="hidden">
+<div class="panel">
+<h1>Imóveis</h1><p class="muted">Cadastre, edite e remova os imóveis exibidos pela imobiliária.</p>
+<div id="message" aria-live="polite"></div>
+<div class="actions"><button id="new-property" type="button">+ Cadastrar imóvel</button><button id="refresh" class="secondary" type="button">Atualizar lista</button></div>
+<div id="property-list" class="cards"><div class="empty">Carregando imóveis…</div></div>
+</div>
+<section id="editor" class="panel hidden">
+<h2 id="editor-title">Novo imóvel</h2>
+<form id="property-form">
+<input id="property-id" type="hidden">
+<div class="grid">
+<div class="field full"><label for="title">Título</label><input id="title" maxlength="120" required placeholder="Ex.: Casa para alugar"></div>
+<div class="field"><label for="type">Finalidade</label><select id="type" required><option value="aluguel">Aluguel</option><option value="venda">Venda</option></select></div>
+<div class="field"><label for="price">Preço (R$)</label><input id="price" type="number" min="0" step="0.01" required></div>
+<div class="field full"><label for="address">Endereço</label><input id="address" maxlength="250" placeholder="Rua, número e bairro"></div>
+<div class="field"><label for="bedrooms">Quartos</label><input id="bedrooms" type="number" min="0" step="1" value="0"></div>
+<div class="field"><label for="bathrooms">Banheiros</label><input id="bathrooms" type="number" min="0" step="1" value="0"></div>
+<div class="field"><label for="parking">Vagas</label><input id="parking" type="number" min="0" step="1" value="0"></div>
+<div class="field full"><label for="description">Descrição</label><textarea id="description" placeholder="Descreva os detalhes confirmados do imóvel"></textarea></div>
+<div class="field full"><label for="photos">Adicionar fotos</label><input id="photos" type="file" accept="image/*" multiple><div class="muted" style="font-size:12px;margin-top:5px">As fotos serão enviadas ao bucket imoveis-fotos. Você pode selecionar várias imagens.</div><div id="photo-preview" class="photo-preview"></div></div>
+</div>
+<div class="actions"><button id="save-button" type="submit">Salvar imóvel</button><button id="cancel-edit" class="secondary" type="button">Cancelar</button></div>
+</form>
+</section>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0/dist/umd/supabase.min.js"></script>
+<script>
+(() => {
+  const SUPABASE_URL = "https://wjrrpuvfpufmdtqxblcj.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_eRmq4MZTwppzdIpaltYuaQ_sZBVrE8w";
+  const ADMIN_EMAIL = "novaportugalimobiliaria@gmail.com";
+  const BUCKET = "imoveis-fotos";
+  const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  const $ = (id) => document.getElementById(id);
+  let currentPhotos = [];
+
+  function message(target, text, error=false) {
+    target.innerHTML = "";
+    if (!text) return;
+    const box = document.createElement("div");
+    box.className = "notice" + (error ? " error" : "");
+    box.textContent = text;
+    target.appendChild(box);
+  }
+  function money(value) {
+    return Number(value || 0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+  }
+  function isAdmin(user) {
+    return !!user && (user.email || "").toLowerCase() === ADMIN_EMAIL;
+  }
+  function showApp(user) {
+    $("login").classList.add("hidden");
+    $("app").classList.remove("hidden");
+    $("logout").classList.remove("hidden");
+    $("user-label").textContent = user.email || "";
+    loadProperties();
+  }
+  function showLogin() {
+    $("login").classList.remove("hidden");
+    $("app").classList.add("hidden");
+    $("logout").classList.add("hidden");
+    $("user-label").textContent = "";
+  }
+  async function checkSession() {
+    const {data,error} = await client.auth.getSession();
+    if (error) return message($("login-message"),error.message,true);
+    if (isAdmin(data.session?.user)) showApp(data.session.user);
+    else showLogin();
+  }
+
+  $("login-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const button=$("login-button"); button.disabled=true; button.textContent="Entrando…";
+    message($("login-message"),"");
+    const {data,error}=await client.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});
+    button.disabled=false; button.textContent="Entrar no painel";
+    if(error){message($("login-message"),"Não foi possível entrar. Confira o e-mail e a senha.",true);return;}
+    if(!isAdmin(data.user)){await client.auth.signOut();message($("login-message"),"Este usuário não está autorizado a administrar os imóveis.",true);return;}
+    $("password").value=""; showApp(data.user);
+  });
+  $("logout").addEventListener("click",async()=>{await client.auth.signOut();showLogin();});
+  client.auth.onAuthStateChange((_event,session)=>{
+    if(isAdmin(session?.user)) showApp(session.user);
+    else showLogin();
+  });
+
+  async function loadProperties(){
+    const list=$("property-list"); list.innerHTML='<div class="empty">Carregando…</div>';
+    const {data,error}=await client.from("imoveis").select("*").order("created_at",{ascending:false});
+    if(error){list.innerHTML="";message($("message"),"Erro ao carregar imóveis: "+error.message,true);return;}
+    list.innerHTML="";
+    if(!data?.length){list.innerHTML='<div class="empty">Nenhum imóvel cadastrado ainda.</div>';return;}
+    data.forEach(property=>{
+      const card=document.createElement("article");card.className="item";
+      const info=document.createElement("div");
+      const h=document.createElement("h3");h.textContent=property.titulo||"Imóvel sem título";
+      const p=document.createElement("p");p.textContent=(property.tipo||"").toUpperCase()+" · "+money(property.preco)+" · "+(property.endereco||"Endereço não informado");
+      info.append(h,p);
+      const actions=document.createElement("div");actions.className="item-actions";
+      const edit=document.createElement("button");edit.type="button";edit.className="secondary";edit.textContent="Editar";edit.addEventListener("click",()=>editProperty(property));
+      const del=document.createElement("button");del.type="button";del.className="danger";del.textContent="Excluir";del.addEventListener("click",()=>deleteProperty(property));
+      actions.append(edit,del);card.append(info,actions);list.append(card);
+    });
+  }
+  function editProperty(p){
+    $("editor").classList.remove("hidden");$("editor-title").textContent="Editar imóvel";
+    $("property-id").value=p.id;$("title").value=p.titulo||"";$("type").value=p.tipo||"aluguel";
+    $("price").value=p.preco??"";$("address").value=p.endereco||"";
+    $("bedrooms").value=p.quartos??0;$("bathrooms").value=p.banheiros??0;$("parking").value=p.vagas??0;
+    $("description").value=p.descricao||"";currentPhotos=Array.isArray(p.fotos)?[...p.fotos]:[];
+    $("photos").value="";renderPhotos();$("editor").scrollIntoView({behavior:"smooth",block:"start"});
+  }
+  function renderPhotos(){
+    const area=$("photo-preview");area.innerHTML="";
+    currentPhotos.forEach((url,index)=>{
+      const wrap=document.createElement("div");wrap.style.position="relative";
+      const img=document.createElement("img");img.src=url;img.alt="Foto do imóvel";
+      const remove=document.createElement("button");remove.type="button";remove.textContent="×";remove.className="danger";
+      remove.style.cssText="position:absolute;right:2px;top:2px;padding:1px 7px;border-radius:50%";
+      remove.addEventListener("click",()=>{currentPhotos.splice(index,1);renderPhotos();});
+      wrap.append(img,remove);area.append(wrap);
+    });
+  }
+  $("photos").addEventListener("change",()=>{
+    const files=Array.from($("photos").files||[]);
+    if(files.length>15){message($("message"),"Selecione no máximo 15 fotos por envio.",true);$("photos").value="";return;}
+    for(const file of files){if(file.size>12*1024*1024){message($("message"),"Cada foto deve ter até 12 MB.",true);$("photos").value="";return;}}
+  });
+  async function uploadPhotos(files){
+    const urls=[];
+    for(const file of files){
+      const safe=file.name.normalize("NFKD").replace(/[^a-zA-Z0-9._-]/g,"-");
+      const path="imoveis/"+crypto.randomUUID()+"-"+safe;
+      const {error}=await client.storage.from(BUCKET).upload(path,file,{cacheControl:"3600",upsert:false,contentType:file.type});
+      if(error) throw error;
+      const {data}=client.storage.from(BUCKET).getPublicUrl(path);
+      urls.push(data.publicUrl);
+    }
+    return urls;
+  }
+  $("property-form").addEventListener("submit",async(event)=>{
+    event.preventDefault();
+    const button=$("save-button");button.disabled=true;button.textContent="Salvando…";message($("message"),"");
+    try{
+      const uploaded=await uploadPhotos(Array.from($("photos").files||[]));
+      const payload={
+        titulo:$("title").value.trim(),tipo:$("type").value,preco:Number($("price").value),
+        endereco:$("address").value.trim()||null,quartos:Number($("bedrooms").value||0),
+        banheiros:Number($("bathrooms").value||0),vagas:Number($("parking").value||0),
+        descricao:$("description").value.trim()||null,fotos:[...currentPhotos,...uploaded]
+      };
+      const id=$("property-id").value;
+      const result=id?await client.from("imoveis").update(payload).eq("id",id):await client.from("imoveis").insert(payload);
+      if(result.error) throw result.error;
+      message($("message"),"Imóvel salvo com sucesso.");
+      resetEditor();await loadProperties();
+    }catch(error){message($("message"),"Não foi possível salvar: "+(error.message||"erro desconhecido"),true);}
+    finally{button.disabled=false;button.textContent="Salvar imóvel";}
+  });
+  function resetEditor(){
+    $("property-form").reset();$("property-id").value="";$("editor-title").textContent="Novo imóvel";
+    $("editor").classList.add("hidden");currentPhotos=[];$("photo-preview").innerHTML="";
+  }
+  $("new-property").addEventListener("click",()=>{resetEditor();$("editor").classList.remove("hidden");$("editor-title").textContent="Novo imóvel";$("editor").scrollIntoView({behavior:"smooth"});});
+  $("cancel-edit").addEventListener("click",resetEditor);
+  $("refresh").addEventListener("click",loadProperties);
+  async function deleteProperty(p){
+    if(!confirm("Excluir o imóvel “"+(p.titulo||"sem título")+"”?"))return;
+    const {error}=await client.from("imoveis").delete().eq("id",p.id);
+    if(error){message($("message"),"Não foi possível excluir: "+error.message,true);return;}
+    message($("message"),"Imóvel excluído. As fotos antigas no Storage não foram removidas automaticamente.");
+    await loadProperties();
+  }
+  checkSession();
+})();
+</script>
+</body>
+</html>
