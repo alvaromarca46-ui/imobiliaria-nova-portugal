@@ -1,14 +1,12 @@
-# Painel administrativo — configuração pendente
+# Integração Supabase — concluída
 
-O painel não foi incluído nesta versão porque os arquivos administrativos disponíveis usam uma tabela `imoveis` e um bucket `imoveis-fotos`, enquanto o projeto informado para a Nova Portugal contém `properties`, `property_images` e `admins`.
+A integração inicial da Imobiliária Nova Portugal foi configurada no projeto Supabase `wjrrpuvfpufmdtqxblcj`.
 
-Adaptar o painel sem conhecer as colunas, chaves estrangeiras, políticas RLS e bucket corretos poderia causar falhas ou alterações indevidas.
+- Catálogo público conectado à tabela `public.imoveis`.
+- Os quatro imóveis iniciais foram inseridos no banco.
+- Painel administrativo em `/admin.html`.
+- Bucket de fotos: `imoveis-fotos`.
+- Políticas RLS e Storage limitam operações administrativas ao e-mail `novaportugalimobiliaria@gmail.com`.
+- O navegador utiliza somente a chave pública/publishable; a chave `service_role` não está no código.
 
-Para concluir o painel:
-- confirmar o Project Ref do Supabase;
-- inspecionar as três tabelas e suas colunas;
-- verificar políticas RLS e permissões do Storage;
-- implementar autenticação e autorização administrativa;
-- testar operações com uma conta de administrador autorizada.
-
-Não colocar a chave `service_role` no navegador. Usar somente a chave pública/publishable com RLS corretamente configurado.
+Para conferir o esquema, consulte o README. O catálogo mantém os anúncios incorporados como fallback se o Supabase estiver indisponível.
