@@ -296,6 +296,108 @@ footer a{color:#fff}
  .ct .links .btn{width:100%;overflow-wrap:anywhere}
 }
 
+
+/* NOVA COMPOSIÇÃO EDITORIAL — estrutura refeita */
+:root{--bg:#f4f1e9;--surface:#fff;--ink:#1c2921;--muted:#6d776e;--line:#dedfd5;--accent:#1b5038;--deep:#123b2b}
+body{background:#f4f1e9}
+header{background:#f4f1e9;color:#1c2921;border-bottom:1px solid #dedfd5}
+header .brand,header nav a:not(.btn),header .burger{color:#1c2921}
+header .brand small{color:#788178}
+header .mark{background:#1b5038;color:#fff;border-radius:50%}
+header .btn{background:#1b5038;color:#fff}
+.new-hero{position:relative;min-height:min(760px,calc(100svh - 82px));background:#14291f;color:#fff;overflow:hidden;display:flex;align-items:center}
+.new-hero-photo,.new-hero-shade{position:absolute;inset:0}
+.new-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 48%;opacity:.75}
+.new-hero-shade{background:linear-gradient(90deg,rgba(8,25,17,.88) 0%,rgba(8,25,17,.66) 42%,rgba(8,25,17,.12) 100%),linear-gradient(0deg,rgba(8,25,17,.35),transparent 35%)}
+.new-hero-inner{position:relative;z-index:1;padding:clamp(70px,10vw,130px) 0 110px}
+.new-kicker,.new-overline{display:flex;align-items:center;gap:12px;font:600 .72rem var(--sans);letter-spacing:.16em;color:#d4dfd3}
+.new-kicker span:first-child{width:28px;height:2px;background:#d6b85e}
+.new-hero h1{font:400 clamp(4rem,9vw,8.5rem)/.91 var(--serif);letter-spacing:-.065em;margin:34px 0 26px;max-width:850px}
+.new-hero h1 em{color:#d9c17d}
+.new-hero-inner>p{font-size:clamp(1.05rem,1.5vw,1.2rem);line-height:1.75;color:rgba(255,255,255,.78);max-width:440px;margin:0}
+.new-hero-actions{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-top:34px}
+.new-hero-actions .btn{background:#f3eddd;color:#173b2b;border-radius:5px;min-height:54px}
+.new-text-link,.new-light-link{color:#fff;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:6px}
+.new-hero-foot{position:absolute;left:0;right:0;bottom:34px;display:flex;justify-content:space-between;gap:20px;font:600 .68rem var(--sans);letter-spacing:.15em;color:rgba(255,255,255,.7)}
+.new-hero-index{position:absolute;right:max(calc((100vw - 1160px)/2),24px);bottom:34px;font:500 .8rem var(--sans);color:#fff}.new-hero-index b{font:400 1.5rem var(--serif)}
+.new-search-wrap{position:relative;z-index:3;margin-top:-36px}
+.new-search-wrap .hero-search{margin:0;background:#fff;border:1px solid #e5e3d9;border-radius:8px;padding:18px 20px 18px 28px;box-shadow:0 18px 50px rgba(25,45,31,.12)}
+.new-search-wrap .hs-field span{color:#788178}.new-search-wrap .hs-field select,.new-search-wrap .hs-field input{color:#1c2921}
+.new-search-wrap .hs-submit{background:#1b5038;color:#fff;border-radius:5px}
+.new-listings{padding:120px 0 110px;background:#fbfaf6}
+.new-section-top{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:38px}
+.new-overline{color:#8a9488;margin-bottom:18px}
+.new-section-top h2{font:400 clamp(2.9rem,5.5vw,5.3rem)/.98 var(--serif);letter-spacing:-.055em}
+.new-section-top h2 em{color:#1b5038}
+.new-all-link{color:#1b5038;text-decoration:none;font-weight:600;border-bottom:1px solid #aeb9ac;padding-bottom:8px;white-space:nowrap}
+.new-listing-intro{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;color:#717b72}
+.new-listing-intro p{margin:0}.new-listings .arr button{background:transparent;border-color:#cdd3c9}
+.new-listings .car{gap:22px;padding-bottom:10px}
+.new-listings .car .card{flex-basis:min(370px,86%);border-radius:7px;border:1px solid #e8e7df;background:#fff;box-shadow:0 12px 35px rgba(25,45,31,.055)}
+.new-listings .card .ci{aspect-ratio:1.2}
+.new-listings .card .cb{padding:23px}
+.new-listings .card .tag{border-radius:3px;background:#f5f1e6;color:#1b5038}
+.new-listings .card .price{color:#1b5038}
+.new-listings .card .btn{border-radius:4px;background:#1b5038;color:#fff}
+.new-about{background:#173f2e;color:#fff;padding:clamp(75px,10vw,135px) 0;overflow:hidden}
+.new-about-grid{display:grid;grid-template-columns:.7fr 1.3fr;column-gap:9%;row-gap:45px}
+.new-about-label{display:flex;flex-direction:column;justify-content:space-between;min-height:320px}
+.new-about-label .new-overline{color:#c5d2c7}
+.new-big-number{font:400 clamp(8rem,19vw,17rem)/.7 var(--serif);letter-spacing:-.1em;color:rgba(255,255,255,.11)}
+.new-big-number span{color:#d9c17d}
+.new-about-copy h2{font:400 clamp(2.7rem,5.3vw,5rem)/1 var(--serif);letter-spacing:-.05em;max-width:760px}
+.new-about-copy p{color:rgba(255,255,255,.72);font-size:1.08rem;line-height:1.85;max-width:590px;margin:25px 0}
+.new-about-details{grid-column:2;display:grid;grid-template-columns:1fr 1fr 1.3fr;border-top:1px solid rgba(255,255,255,.25);padding-top:22px;gap:24px}
+.new-about-details div{display:flex;flex-direction:column;gap:10px}
+.new-about-details small{font:600 .66rem var(--sans);letter-spacing:.13em;color:#c5d2c7}
+.new-about-details b{font:500 .95rem/1.5 var(--sans);color:#fff}
+.new-services{padding:clamp(75px,9vw,120px) 0;background:#f4f1e9}
+.new-services .new-section-top p{max-width:260px;color:#6d776e;line-height:1.7}
+.new-service-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;border:0}
+.new-service-grid>a{min-height:175px;padding:26px;background:#fbfaf6;border:1px solid #dedfd5;border-radius:6px;display:flex;align-items:end;justify-content:space-between;gap:15px;text-decoration:none;color:#1c2921;font:400 clamp(1.5rem,2.7vw,2.3rem)/1.1 var(--serif);transition:background .25s,transform .25s,border-color .25s}
+.new-service-grid>a:hover{background:#fff;border-color:#9eae9e;transform:translateY(-4px);padding-left:26px;color:#1b5038}
+.new-service-grid>a svg{width:25px;height:25px;flex:none}
+.new-contact{padding:0 0 90px;background:#f4f1e9}
+.new-contact .ct{margin:0;border-radius:7px;background:#173f2e;box-shadow:none;padding:clamp(38px,7vw,82px);display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end}
+.new-contact .new-overline{color:#d9c17d}
+.new-contact .ct h2{font:400 clamp(2.8rem,5vw,5rem)/.98 var(--serif);letter-spacing:-.05em;max-width:650px}
+.new-contact .ct p{color:rgba(255,255,255,.72);line-height:1.7}
+.new-contact .links{display:flex;flex-direction:column;align-items:stretch;gap:10px}
+.new-contact .links .btn{justify-content:center;border-radius:4px;min-height:50px;background:#f2eddf;color:#173f2e}
+.new-contact .links .btn.g{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35);box-shadow:none}
+footer{background:#102f23;color:rgba(255,255,255,.72);border:0;padding:30px 0}
+footer a{color:#fff}
+.wa{background:#1b5038;color:#fff;border-radius:5px}
+@media(max-width:760px){
+ .new-hero{min-height:690px;min-height:78svh}
+ .new-hero-photo img{object-position:58% center}
+ .new-hero-shade{background:linear-gradient(90deg,rgba(8,25,17,.86),rgba(8,25,17,.35)),linear-gradient(0deg,rgba(8,25,17,.4),transparent 50%)}
+ .new-hero-inner{padding:76px 0 112px}
+ .new-hero h1{font-size:clamp(3.6rem,16vw,6rem)}
+ .new-hero-foot{bottom:26px;flex-direction:column;gap:6px}
+ .new-hero-index{display:none}
+ .new-search-wrap{margin-top:-25px}
+ .new-search-wrap .hero-search{grid-template-columns:1fr;padding:18px}
+ .new-search-wrap .hs-place{border:0;border-top:1px solid #e5e3d9;padding:10px 0 0}
+ .new-search-wrap .hs-submit{width:100%;grid-column:auto}
+ .new-listings{padding:76px 0}
+ .new-section-top{align-items:start;flex-direction:column}
+ .new-listing-intro{align-items:end}
+ .new-about-grid{grid-template-columns:1fr;gap:34px}
+ .new-about-label{min-height:110px}
+ .new-big-number{font-size:7rem}
+ .new-about-details{grid-column:1;grid-template-columns:1fr 1fr}
+ .new-about-details div:last-child{grid-column:1/-1}
+ .new-services{padding:75px 0}
+ .new-services .new-section-top p{max-width:420px}
+ .new-service-grid{grid-template-columns:1fr}
+ .new-service-grid>a{min-height:125px}
+ .new-contact{padding-bottom:60px}
+ .new-contact .ct{grid-template-columns:1fr;padding:36px 24px;gap:24px}
+ .new-contact .links{width:100%}
+ .new-listing-intro .arr{flex:none}
+}
+
 </style>
 </head>
 <body>
@@ -318,32 +420,50 @@ footer a{color:#fff}
 
 <main id="conteudo">
 <div id="v-home" class="view">
-<div class="wrap hero"><div class="hg">
-<div><div class="flag" aria-hidden="true"><i></i><i></i><i></i></div>
-<h1 aria-label="Encontre o lugar onde a sua história continua."><span><b>Encontre o</b></span><span><b>lugar onde a <em>sua</em></b></span><span><b>história continua.</b></span></h1>
-<p class="lead">Casas e apartamentos para comprar ou alugar em São Paulo, com atendimento direto do Joel Alves.</p>
-<div class="cta"><a class="btn" href="#imoveis">Conhecer os imóveis<svg class="i"><use href="#ar"/></svg></a><a class="btn g" data-wa="Olá, Joel! Vim pelo site e quero ajuda para encontrar um imóvel.">Falar no WhatsApp</a></div><div class="proof"><span><b>CRECI 306196</b> · Atendimento direto</span><span>Compra · Venda · Aluguel</span></div></div>
-<div class="hp" aria-hidden="true"><div class="a"><img data-i="15" alt="" data-px="14"></div><div class="b"><img data-i="9" alt="" data-px="-22"></div><div class="chip">Aluguel e venda<b>4 imóveis</b></div></div>
-</div><form class="hero-search rv" id="hero-search"><label class="hs-field"><span>O que você procura?</span><select id="hero-t" aria-label="Tipo de negócio"><option value="todos">Comprar ou alugar</option><option value="venda">Comprar</option><option value="aluguel">Alugar</option></select></label><label class="hs-field hs-place"><span>Onde deseja morar?</span><input id="hero-q" type="search" placeholder="Digite rua ou bairro"></label><button class="btn hs-submit" type="submit">Buscar imóveis <svg class="i"><use href="#ar"/></svg></button></form></div>
+<section class="new-hero" id="inicio">
+  <div class="new-hero-photo"><img data-i="15" data-px="8" alt="Interior de imóvel apresentado pela Nova Portugal"></div>
+  <div class="new-hero-shade"></div>
+  <div class="wrap new-hero-inner">
+    <div class="new-kicker"><span></span> IMOBILIÁRIA NOVA PORTUGAL <span>·</span> SÃO PAULO</div>
+    <h1>Seu próximo<br><em>capítulo</em> começa<br>aqui.</h1>
+    <p>Imóveis para viver novas histórias. Encontre opções para comprar ou alugar com atendimento direto e próximo.</p>
+    <div class="new-hero-actions">
+      <a class="btn" href="#imoveis">Explorar imóveis <svg class="i"><use href="#ar"/></svg></a>
+      <a class="new-text-link" data-wa="Olá, Joel! Vim pelo site da Nova Portugal e gostaria de ajuda para encontrar um imóvel.">Converse com um especialista ↗</a>
+    </div>
+    <div class="new-hero-foot"><span>CRECI 306196</span><span>COMPRA · VENDA · LOCAÇÃO</span></div>
+  </div>
+  <div class="new-hero-index"><b>01</b><span> / 04</span></div>
+</section>
 
-<section style="padding-top:0"><div class="wrap">
-<div class="head rv"><h2>Imóveis em destaque</h2><div class="arr"><button id="pv" aria-label="Anterior"><svg class="i" style="transform:scaleX(-1)"><use href="#ar"/></svg></button><button id="nx" aria-label="Próximo"><svg class="i"><use href="#ar"/></svg></button></div></div>
-<div class="car rv" id="car" tabindex="0" aria-label="Imóveis em destaque"></div>
+<div class="wrap new-search-wrap">
+<form class="hero-search rv" id="hero-search">
+  <label class="hs-field"><span>Estou procurando</span><select id="hero-t" aria-label="Tipo de negócio"><option value="todos">Comprar ou alugar</option><option value="venda">Comprar</option><option value="aluguel">Alugar</option></select></label>
+  <label class="hs-field hs-place"><span>Localização</span><input id="hero-q" type="search" placeholder="Rua ou bairro"></label>
+  <button class="btn hs-submit" type="submit">Buscar imóveis <svg class="i"><use href="#ar"/></svg></button>
+</form>
+</div>
+
+<section class="new-listings" id="imoveis"><div class="wrap">
+  <div class="new-section-top rv"><div><span class="new-overline">SELEÇÃO NOVA PORTUGAL</span><h2>Espaços para<br><em>novas histórias.</em></h2></div><a class="new-all-link" href="#imoveis">Ver catálogo completo ↗</a></div>
+  <div class="new-listing-intro rv"><p>Conheça as oportunidades disponíveis para compra e aluguel.</p><div class="arr"><button id="pv" aria-label="Anterior"><svg class="i" style="transform:scaleX(-1)"><use href="#ar"/></svg></button><button id="nx" aria-label="Próximo"><svg class="i"><use href="#ar"/></svg></button></div></div>
+  <div class="car rv" id="car" tabindex="0" aria-label="Imóveis em destaque"></div>
 </div></section>
 
-<section class="about" id="sobre"><div class="wrap cols">
-<div class="rv"><h2>Atendimento direto, de quem responde pela imobiliária.</h2><p>A Nova Portugal trabalha com compra, venda e aluguel de imóveis em São Paulo. Quem atende você é o Joel Alves, responsável pela imobiliária, registrado no CRECI 306196.</p></div>
-<dl class="rv"><div><dt>Responsável</dt><dd>Joel Alves</dd></div><div><dt>Registro</dt><dd>CRECI 306196</dd></div><div><dt>Endereço</dt><dd>Avenida Rodolfo Pirani, 805<br>Jardim Rodolfo Pirani, São Paulo – SP</dd></div></dl>
+<section class="new-about" id="sobre"><div class="wrap new-about-grid">
+  <div class="new-about-label rv"><span class="new-overline">PROXIMIDADE EM CADA ETAPA</span><span class="new-big-number">NP<span>.</span></span></div>
+  <div class="new-about-copy rv"><h2>Mais do que encontrar um imóvel. É encontrar o lugar certo.</h2><p>A Nova Portugal trabalha com compra, venda e aluguel de imóveis em São Paulo. Você fala diretamente com Joel Alves, responsável pela imobiliária e registrado no CRECI 306196.</p><a class="new-light-link" data-wa="Olá, Joel! Gostaria de conhecer melhor os serviços da Nova Portugal.">Conheça nosso atendimento ↗</a></div>
+  <div class="new-about-details rv"><div><small>RESPONSÁVEL</small><b>Joel Alves</b></div><div><small>REGISTRO PROFISSIONAL</small><b>CRECI 306196</b></div><div><small>ONDE ESTAMOS</small><b>Avenida Rodolfo Pirani, 805<br>Jardim Rodolfo Pirani · São Paulo – SP</b></div></div>
 </div></section>
 
-<section id="servicos"><div class="wrap">
-<div class="head rv"><h2>Como podemos ajudar</h2></div>
-<div class="sv rv" id="sv"></div>
+<section class="new-services" id="servicos"><div class="wrap">
+  <div class="new-section-top rv"><div><span class="new-overline">O QUE FAZEMOS</span><h2>Do primeiro passo<br>à <em>nova conquista.</em></h2></div><p>Orientação próxima para cada momento da sua jornada imobiliária.</p></div>
+  <div class="sv new-service-grid rv" id="sv"></div>
 </div></section>
 
-<section id="contato" style="padding-top:0"><div class="wrap"><div class="ct rv">
-<h2>Vamos encontrar o seu próximo endereço?</h2><p>Mande uma mensagem contando o que você procura. O Joel responde pelo WhatsApp.</p>
-<div class="links"><a class="btn" data-wa="Olá, Joel! Vim pelo site da Nova Portugal."><svg class="i"><use href="#chat"/></svg>Chamar no WhatsApp</a><a class="btn g" href="mailto:novaportugalimobiliaria@gmail.com">novaportugalimobiliaria@gmail.com</a><a class="btn g" href="https://www.instagram.com/novaportugal_.imobiliaria/" target="_blank" rel="noopener">@novaportugal_.imobiliaria</a></div>
+<section id="contato" class="new-contact"><div class="wrap"><div class="ct rv">
+  <div><span class="new-overline">VAMOS CONVERSAR?</span><h2>O próximo endereço pode começar com uma mensagem.</h2><p>Conte o que você procura. O Joel está pronto para ajudar.</p></div>
+  <div class="links"><a class="btn" data-wa="Olá, Joel! Vim pelo site da Nova Portugal."><svg class="i"><use href="#chat"/></svg>Falar pelo WhatsApp</a><a class="btn g" href="mailto:novaportugalimobiliaria@gmail.com">Enviar e-mail ↗</a><a class="btn g" href="https://www.instagram.com/novaportugal_.imobiliaria/" target="_blank" rel="noopener">Instagram ↗</a></div>
 </div></div></section>
 </div>
 
